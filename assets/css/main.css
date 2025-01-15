@@ -152,7 +152,7 @@ h6 {
 # Global Header
 --------------------------------------------------------------*/
 .header {
-  --background-color: #000000;
+  --background-color: #4e4e4e;
   --default-color: #ffffff;
   --heading-color: #ffffff;
   color: var(--default-color);
@@ -666,7 +666,7 @@ section,
 --------------------------------------------------------------*/
 .hero {
   width: 100%;
-  min-height: calc(50vh - 92px);
+  min-height: calc(25vh - 92px);
   position: relative;
   padding: 60px 0;
   display: flex;
