@@ -8,48 +8,91 @@
 
     <script src="feedback/libraries/p5.min.js"></script>
     <script src="feedback/libraries/p5.sound.min.js"></script>
-  </head>
-  <body>
-    <div id="controls" class="controls-panel">
-      <h2>Controls</h2>
-      <div class="slider-container">
-        <div class="slider-label">
-          <span>Diameter</span>
-          <span class="slider-value" id="diameter-value">40</span>
-        </div>
+  </head>  <body>
+    <div id="controls" class="controls-panel collapsed">
+      <div class="controls-header" id="controls-header">
+        <h2>Controls</h2>
+        <span class="toggle-arrow" id="toggle-arrow">▼</span>
       </div>
-      <div class="slider-container">
-        <div class="slider-label">
-          <span>Color Speed</span>
-          <span class="slider-value" id="color-value">0</span>
+      <div class="controls-content" id="controls-content">
+        <div class="slider-container">
+          <div class="slider-label">
+            <span>Diameter</span>
+            <span class="slider-value" id="diameter-value">40</span>
+          </div>
         </div>
-      </div>
-      <div class="slider-container">
-        <div class="slider-label">
-          <span>Speed</span>
-          <span class="slider-value" id="speed-value">2.0</span>
+        <div class="slider-container">
+          <div class="slider-label">
+            <span>Color Speed</span>
+            <span class="slider-value" id="color-value">0</span>
+          </div>
         </div>
-      </div>
-      <div class="slider-container">
-        <div class="slider-label">
-          <span>Jitter</span>
-          <span class="slider-value" id="jitter-value">0</span>
+        <div class="slider-container">
+          <div class="slider-label">
+            <span>Speed</span>
+            <span class="slider-value" id="speed-value">2.0</span>
+          </div>
         </div>
-      </div>
-      <div class="slider-container">
-        <div class="slider-label">
-          <span>Trail Length</span>
-          <span class="slider-value" id="trail-value">200</span>
+        <div class="slider-container">
+          <div class="slider-label">
+            <span>Jitter</span>
+            <span class="slider-value" id="jitter-value">0</span>
+          </div>
         </div>
+        <div class="slider-container">
+          <div class="slider-label">
+            <span>Trail Length</span>
+            <span class="slider-value" id="trail-value">200</span>
+          </div>
+        </div>
+        <div class="slider-container">
+          <div class="slider-label">
+            <span>Gravity</span>
+            <span class="slider-value" id="gravity-value">0.00</span>
+          </div>
+        </div>
+        <button id="reset-button" class="reset-btn">Reset Canvas</button>
+        <button id="export-button" class="export-btn">Export Image</button>
+        <a href="portfolio.html" class="portfolio-link">View Portfolio →</a>
       </div>
-      <div class="slider-container">
-        <div class="slider-label">
-          <span>Gravity</span>
-          <span class="slider-value" id="gravity-value">0.00</span>
-        </div>      </div>      <button id="reset-button" class="reset-btn">Reset Canvas</button>
-      <button id="export-button" class="export-btn">Export Image</button>
-      <a href="portfolio.html" class="portfolio-link">View Portfolio →</a>
     </div>
+      <!-- Info Panel -->
+    <div id="info" class="info-panel collapsed">
+      <div class="info-header" id="info-header">
+        <h2>Info</h2>
+        <span class="toggle-arrow" id="info-toggle-arrow">▼</span>
+      </div>
+      <div class="info-content" id="info-content">
+        <div class="info-section">
+          <h3>Parameters</h3>
+          <div class="parameter-info">
+            <strong>Diameter:</strong> Size of the moving circle
+          </div>
+          <div class="parameter-info">
+            <strong>Color Speed:</strong> Rate of color changes over time
+          </div>
+          <div class="parameter-info">
+            <strong>Speed:</strong> How fast the circle moves
+          </div>
+          <div class="parameter-info">
+            <strong>Jitter:</strong> Adds random movement variations
+          </div>
+          <div class="parameter-info">
+            <strong>Trail Length:</strong> How long the motion trail persists
+          </div>
+          <div class="parameter-info">
+            <strong>Gravity:</strong> Attraction strength to center point
+          </div>
+        </div>
+        
+        <div class="info-section">
+          <h3>About</h3>
+          <p>Interactive physics simulation showcasing orbital dynamics and visual feedback. Built with p5.js by Whit Boland.</p>
+          <a href="portfolio.html" class="info-portfolio-link">View Full Portfolio →</a>
+        </div>
+      </div>
+    </div>
+    
     <script src="feedback/sketch.js"></script>
   </body>
 </html>

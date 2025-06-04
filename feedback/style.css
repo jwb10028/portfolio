@@ -46,24 +46,59 @@ canvas {
   right: 20px;
   background: rgba(20, 20, 20, 0.85);
   border-radius: 15px;
-  padding: 25px;
   width: 300px;
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
   z-index: 10;
   backdrop-filter: blur(15px);
   -webkit-backdrop-filter: blur(15px);
   border: 1px solid rgba(255, 255, 255, 0.1);
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.controls-header {
+  padding: 25px 25px 15px 25px;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  user-select: none;
+  transition: background-color 0.2s ease;
+}
+
+.controls-header:hover {
+  background: rgba(255, 255, 255, 0.05);
 }
 
 .controls-panel h2 {
-  margin: 0 0 20px 0;
+  margin: 0;
   color: #ffffff;
   font-size: 18px;
   font-weight: 600;
-  text-align: center;
-  border-bottom: 2px solid rgba(255, 255, 255, 0.3);
-  padding-bottom: 10px;
   font-family: 'Courier New', 'Monaco', 'Menlo', 'Consolas', monospace;
+}
+
+.toggle-arrow {
+  color: #ffffff;
+  font-size: 16px;
+  transition: transform 0.3s ease;
+  font-family: 'Courier New', 'Monaco', 'Menlo', 'Consolas', monospace;
+}
+
+.controls-panel.collapsed .toggle-arrow {
+  transform: rotate(-90deg);
+}
+
+.controls-content {
+  padding: 0 25px 25px 25px;
+  max-height: 1000px;
+  overflow: hidden;
+  transition: max-height 0.3s ease, padding 0.3s ease;
+}
+
+.controls-panel.collapsed .controls-content {
+  max-height: 0;
+  padding: 0 25px;
 }
 
 .slider-container {
@@ -221,6 +256,141 @@ input[type=range]::-moz-range-thumb {
 }
 
 .portfolio-link:active {
+  transform: translateY(0);
+  background: rgba(255, 255, 255, 0.15);
+}
+
+/* Info Panel */
+.info-panel {
+  position: absolute;
+  top: 80px;
+  right: 20px;
+  background: rgba(20, 20, 20, 0.85);
+  border-radius: 15px;
+  width: 300px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+  z-index: 10;
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+/* Dynamic positioning based on controls panel state */
+.controls-panel:not(.collapsed) ~ .info-panel {
+  top: 600px;
+}
+
+.controls-panel.collapsed ~ .info-panel {
+  top: 100px;
+}
+
+.info-header {
+  padding: 25px 25px 15px 25px;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  user-select: none;
+  transition: background-color 0.2s ease;
+}
+
+.info-header:hover {
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.info-panel h2 {
+  margin: 0;
+  color: #ffffff;
+  font-size: 18px;
+  font-weight: 600;
+  font-family: 'Courier New', 'Monaco', 'Menlo', 'Consolas', monospace;
+}
+
+.info-panel.collapsed .toggle-arrow {
+  transform: rotate(-90deg);
+}
+
+.info-content {
+  padding: 0 25px 25px 25px;
+  max-height: 1000px;
+  overflow: hidden;
+  transition: max-height 0.3s ease, padding 0.3s ease;
+}
+
+.info-panel.collapsed .info-content {
+  max-height: 0;
+  padding: 0 25px;
+}
+
+.info-section {
+  margin-bottom: 20px;
+}
+
+.info-section:last-child {
+  margin-bottom: 0;
+}
+
+.info-section h3 {
+  margin: 0 0 10px 0;
+  color: #ffffff;
+  font-size: 14px;
+  font-weight: 600;
+  font-family: 'Courier New', 'Monaco', 'Menlo', 'Consolas', monospace;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  opacity: 0.8;
+}
+
+.parameter-info {
+  margin-bottom: 8px;
+  font-size: 12px;
+  color: #ffffff;
+  font-family: 'Courier New', 'Monaco', 'Menlo', 'Consolas', monospace;
+  line-height: 1.4;
+}
+
+.parameter-info strong {
+  color: #ffffff;
+  font-weight: 600;
+}
+
+.info-section p {
+  margin: 0 0 15px 0;
+  font-size: 12px;
+  color: #ffffff;
+  font-family: 'Courier New', 'Monaco', 'Menlo', 'Consolas', monospace;
+  line-height: 1.5;
+  opacity: 0.9;
+}
+
+.info-portfolio-link {
+  display: inline-block;
+  padding: 8px 16px;
+  text-align: center;
+  text-decoration: none;
+  background: rgba(255, 255, 255, 0.1);
+  color: #ffffff;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-family: 'Courier New', 'Monaco', 'Menlo', 'Consolas', monospace;
+}
+
+.info-portfolio-link:hover {
+  background: rgba(255, 255, 255, 0.2);
+  border-color: rgba(255, 255, 255, 0.5);
+  color: #ffffff;
+  text-decoration: none;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(255, 255, 255, 0.1);
+}
+
+.info-portfolio-link:active {
   transform: translateY(0);
   background: rgba(255, 255, 255, 0.15);
 }

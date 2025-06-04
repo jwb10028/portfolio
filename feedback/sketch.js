@@ -40,22 +40,22 @@ function setup() {
   
   // Create sliders and parent them to their containers
   diameterSlider = createSlider(5, 100, diameter);
-  diameterSlider.parent(select('.slider-container:nth-child(2)'));
+  diameterSlider.parent(select('.controls-content .slider-container:nth-child(1)'));
   
   colorSlider = createSlider(0, 10, 0);
-  colorSlider.parent(select('.slider-container:nth-child(3)'));
+  colorSlider.parent(select('.controls-content .slider-container:nth-child(2)'));
   
   speedSlider = createSlider(0.5, 5, speedMultiplier, 0.1);
-  speedSlider.parent(select('.slider-container:nth-child(4)'));
+  speedSlider.parent(select('.controls-content .slider-container:nth-child(3)'));
   
   jitterSlider = createSlider(0, 20, jitterAmount);
-  jitterSlider.parent(select('.slider-container:nth-child(5)'));
+  jitterSlider.parent(select('.controls-content .slider-container:nth-child(4)'));
   
   trailSlider = createSlider(50, 500, maxTrails);
-  trailSlider.parent(select('.slider-container:nth-child(6)'));
+  trailSlider.parent(select('.controls-content .slider-container:nth-child(5)'));
   
   gravitySlider = createSlider(0, 0.5, 0, 0.01);
-  gravitySlider.parent(select('.slider-container:nth-child(7)'));
+  gravitySlider.parent(select('.controls-content .slider-container:nth-child(6)'));
   
   // Add reset button functionality
   select('#reset-button').mousePressed(resetCanvas);
@@ -227,3 +227,29 @@ function mousePressed() {
 function doubleClicked() {
   hasMouseTarget = false;
 }
+
+// Accordion functionality for both panels
+document.addEventListener('DOMContentLoaded', function() {
+  const controlsHeader = document.getElementById('controls-header');
+  const controlsPanel = document.getElementById('controls');
+  const infoHeader = document.getElementById('info-header');
+  const infoPanel = document.getElementById('info');
+  
+  controlsHeader.addEventListener('click', function() {
+    // If info is open, close it first
+    if (!infoPanel.classList.contains('collapsed')) {
+      infoPanel.classList.add('collapsed');
+    }
+    // Then toggle controls
+    controlsPanel.classList.toggle('collapsed');
+  });
+  
+  infoHeader.addEventListener('click', function() {
+    // If controls is open, close it first
+    if (!controlsPanel.classList.contains('collapsed')) {
+      controlsPanel.classList.add('collapsed');
+    }
+    // Then toggle info
+    infoPanel.classList.toggle('collapsed');
+  });
+});
