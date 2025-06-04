@@ -40,9 +40,37 @@ canvas {
   letter-spacing: 0.5px;
 }
 
+/* Header styling to match portfolio.html */
+#header {
+  color: #ffffff;
+  background-color: rgba(78, 78, 78, 0.9);
+  padding: 20px 0;
+  transition: all 0.5s;
+  z-index: 997;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+#header .logo {
+  line-height: 1;
+  text-decoration: none;
+}
+
+#header .logo h1 {
+  font-size: 30px;
+  margin: 0;
+  font-weight: 700;
+  color: #ffffff;
+  font-family: 'Courier New', 'Monaco', 'Menlo', 'Consolas', monospace;
+}
+
+#header .logo:hover {
+  text-decoration: none;
+}
+
 .controls-panel {
   position: absolute;
-  top: 20px;
+  top: 90px;
   right: 20px;
   background: rgba(20, 20, 20, 0.85);
   border-radius: 15px;
@@ -230,7 +258,7 @@ input[type=range]::-moz-range-thumb {
 
 .portfolio-link {
   display: block;
-  width: 91%;
+  width: 100%;
   margin: 10px auto 0 auto;
   padding: 12px;
   text-align: center;
@@ -263,7 +291,7 @@ input[type=range]::-moz-range-thumb {
 /* Info Panel */
 .info-panel {
   position: absolute;
-  top: 80px;
+  top: 150px;
   right: 20px;
   background: rgba(20, 20, 20, 0.85);
   border-radius: 15px;
@@ -279,11 +307,11 @@ input[type=range]::-moz-range-thumb {
 
 /* Dynamic positioning based on controls panel state */
 .controls-panel:not(.collapsed) ~ .info-panel {
-  top: 600px;
+  top: 670px;
 }
 
 .controls-panel.collapsed ~ .info-panel {
-  top: 100px;
+  top: 170px;
 }
 
 .info-header {

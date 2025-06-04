@@ -1,14 +1,28 @@
 <!DOCTYPE html>
-<html lang="en">
-  <head>
+<html lang="en">  <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">    <title>Whit Boland - Interactive Demo</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Whit Boland - Interactive Demo</title>
 
     <link rel="stylesheet" type="text/css" href="feedback/style.css">
+    
+    <!-- Bootstrap CSS for header styling -->
+    <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
 
     <script src="feedback/libraries/p5.min.js"></script>
     <script src="feedback/libraries/p5.sound.min.js"></script>
-  </head>  <body>
+  </head>
+  
+  <body>    <!-- Header Bar -->
+    <header id="header" class="header d-flex align-items-center sticky-top">
+      <div class="container-fluid container-xl position-relative d-flex align-items-center justify-content-between">
+        <a href="portfolio.html" class="logo d-flex align-items-center">
+          <h1 class="sitename">portfolio</h1>
+        </a>
+        <!-- Navigation removed as requested -->
+      </div>
+    </header>
     <div id="controls" class="controls-panel collapsed">
       <div class="controls-header" id="controls-header">
         <h2>Controls</h2>
