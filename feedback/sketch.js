@@ -11,6 +11,11 @@ let gravitationalStrength = 0; // Strength of gravitational pull to center (redu
 let centerX, centerY;    // Center point of the canvas
 let colorAngle = 0;      // Angle for color oscillation
 
+// Mouse interaction variables
+let mouseTargetX, mouseTargetY; // Mouse click target position
+let hasMouseTarget = false;     // Whether there's an active mouse target
+let mouseTargetStrength = 0.3;  // Strength of mouse target attraction
+
 // Variables for sliders
 let diameterSlider, colorSlider, speedSlider, jitterSlider, trailSlider, gravitySlider;
 let sliderLabels = ['Diameter', 'Color Speed', 'Speed', 'Jitter', 'Trail Length', 'Gravity'];
@@ -73,6 +78,9 @@ function resetCanvas() {
   
   // Reset color angle
   colorAngle = 0;
+  
+  // Clear mouse target
+  hasMouseTarget = false;
   
   // Force a clear background
   background(220);
@@ -138,19 +146,34 @@ function draw() {
   strokeWeight(1.5);  // Outline thickness
   ellipse(x, y, diameter);
   
-  // Calculate gravitational pull to center
-  let dx = centerX - x;
-  let dy = centerY - y;
-  let distanceToCenter = sqrt(dx*dx + dy*dy);
+  // Determine gravity target: mouse target takes priority over center
+  let gravityTargetX, gravityTargetY;
+  let useMouseTarget = hasMouseTarget && gravitationalStrength > 0;
   
-  // Normalize direction vector and apply gravitational strength
-  if (distanceToCenter > 0) {
-    // Apply gravitational force (reduced for more orbital motion)
-    let gravityForce = gravitationalStrength / (distanceToCenter * 0.01 + 1);
-    xspeed += (dx / distanceToCenter) * gravityForce;
-    yspeed += (dy / distanceToCenter) * gravityForce;
-    
-    // Add periodic trajectory shifts for more chaotic orbits
+  if (useMouseTarget) {
+    // Use mouse target as gravity source
+    gravityTargetX = mouseTargetX;
+    gravityTargetY = mouseTargetY;
+  } else {
+    // Use center as gravity source
+    gravityTargetX = centerX;
+    gravityTargetY = centerY;
+  }
+  
+  // Calculate gravitational pull to the active target
+  let dx = gravityTargetX - x;
+  let dy = gravityTargetY - y;
+  let distanceToTarget = sqrt(dx*dx + dy*dy);
+  
+  // Apply gravitational force if target exists and gravity is enabled
+  if (distanceToTarget > 0 && gravitationalStrength > 0) {
+    let gravityForce = gravitationalStrength / (distanceToTarget * 0.01 + 1);
+    xspeed += (dx / distanceToTarget) * gravityForce;
+    yspeed += (dy / distanceToTarget) * gravityForce;
+  }
+  
+  // Add periodic trajectory shifts for chaotic orbits (always active for center, disabled for mouse targets)
+  if (!useMouseTarget) {
     let timeShift = frameCount * 0.01;
     let shiftForce = 0.02 * speedMultiplier;
     xspeed += sin(timeShift + x * 0.01) * shiftForce;
@@ -182,4 +205,25 @@ function draw() {
   select('#jitter-value').html(jitterAmount);
   select('#trail-value').html(maxTrails);
   select('#gravity-value').html(gravitationalStrength.toFixed(2));
+}
+
+// Mouse interaction functions
+function mousePressed() {
+  // Check if mouse is over the control panel
+  let controlsPanel = select('#controls');
+  let rect = controlsPanel.elt.getBoundingClientRect();
+  
+  // If mouse is not over the control panel, set/replace mouse target
+  if (mouseX < rect.left || mouseX > rect.right || 
+      mouseY < rect.top || mouseY > rect.bottom) {
+    // Silently replace any existing target with new position
+    mouseTargetX = mouseX;
+    mouseTargetY = mouseY;
+    hasMouseTarget = true;
+  }
+}
+
+// Double-click to remove mouse target
+function doubleClicked() {
+  hasMouseTarget = false;
 }
